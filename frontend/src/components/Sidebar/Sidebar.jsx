@@ -1,0 +1,42 @@
+import "./Sidebar.css";
+
+import { FiMessageSquare, FiTrash2 } from "react-icons/fi";
+
+import { useChat } from "../../context/ChatContext";
+
+function Sidebar() {
+  const { chats, activeChatId, setActiveChatId, deleteChat } = useChat();
+
+  return (
+    <div className="sidebar">
+      <div className="sidebar-header">
+        <h2>ARIE</h2>
+
+        <p>AI Assistant</p>
+      </div>
+
+      <div className="chat-list">
+        {chats.map((chat) => (
+          <div
+            key={chat.id}
+            className={
+              activeChatId === chat.id ? "chat-item active" : "chat-item"
+            }
+          >
+            <div className="chat-info" onClick={() => setActiveChatId(chat.id)}>
+              <FiMessageSquare />
+
+              <span>{chat.title}</span>
+            </div>
+
+            <button className="delete-btn" onClick={() => deleteChat(chat.id)}>
+              <FiTrash2 />
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Sidebar;

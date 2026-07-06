@@ -1,0 +1,140 @@
+.chat-input {
+  width: 100%;
+  padding: 20px 30px;
+  background: #ffffff;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.chat-input input {
+  flex: 1;
+  height: 55px;
+  border: none;
+  outline: none;
+  background: #f4f5f9;
+  border-radius: 30px;
+  padding: 0 22px;
+  font-size: 16px;
+  color: #333;
+  transition: 0.3s;
+}
+
+.chat-input input:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 2px #6c63ff;
+}
+
+.chat-input button {
+  width: 55px;
+  height: 55px;
+  margin-left: 15px;
+  border: none;
+  border-radius: 50%;
+  background: #6c63ff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat-input button:hover {
+  background: #574bdb;
+  transform: scale(1.05);
+}
+
+.chat-input button:active {
+  transform: scale(0.95);
+}
+
+.chat-input button:disabled {
+  background: #b9b9b9;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .chat-input {
+    padding: 15px;
+  }
+
+  .chat-input input {
+    font-size: 15px;
+    height: 50px;
+  }
+
+  .chat-input button {
+    width: 50px;
+    height: 50px;
+  }
+}
+.input-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mic-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #ececec;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.mic-btn:hover {
+  background: #dddddd;
+}
+
+.mic-btn.listening {
+  background: #ff4d4d;
+  color: white;
+  animation: pulse 1s infinite;
+}
+
+.mic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+.mic-btn.listening {
+  background: #ff4d4d;
+  color: white;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

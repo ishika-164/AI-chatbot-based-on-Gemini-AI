@@ -1,0 +1,26 @@
+.theme-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.theme-card {
+  border: 2px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theme-card:hover {
+  border-color: #6c63ff;
+}
+
+.theme-card.active {
+  border-color: #6c63ff;
+  background: #f3f2ff;
+}
+
+.theme-card h3 {
+  margin-bottom: 10px;
+}
