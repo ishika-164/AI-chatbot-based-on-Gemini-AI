@@ -1,17 +1,27 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-  const [chats, setChats] = useState([
+  const defaultChats = [
     {
       id: 1,
       title: "New Chat",
       messages: [],
     },
-  ]);
+  ];
 
-  const [activeChatId, setActiveChatId] = useState(1);
+  const [chats, setChats] = useState(() => {
+    const saved = localStorage.getItem("arie_chats");
+
+    return saved ? JSON.parse(saved) : defaultChats;
+  });
+
+  const [activeChatId, setActiveChatId] = useState(() => {
+    const saved = localStorage.getItem("arie_active_chat");
+
+    return saved ? JSON.parse(saved) : 1;
+  });
 
   const activeChat = chats.find((chat) => chat.id === activeChatId);
 
@@ -57,10 +67,31 @@ export const ChatProvider = ({ children }) => {
 
     setChats(updatedChats);
 
+    if (updatedChats.length > 0) {
+      setActiveChatId(updatedChats[0].id);
+    }
+    if (updatedChats.length === 0) {
+      const newChat = {
+        id: Date.now(),
+        title: "New Chat",
+        messages: [],
+      };
+
+      setChats([newChat]);
+      setActiveChatId(newChat.id);
+    }
+
     if (activeChatId === id) {
       setActiveChatId(updatedChats[0].id);
     }
   };
+  useEffect(() => {
+    localStorage.setItem("arie_chats", JSON.stringify(chats));
+  }, [chats]);
+
+  useEffect(() => {
+    localStorage.setItem("arie_active_chat", JSON.stringify(activeChatId));
+  }, [activeChatId]);
 
   return (
     <ChatContext.Provider

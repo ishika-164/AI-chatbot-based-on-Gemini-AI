@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "./Navbar.css";
-
+import { exportChat } from "../../services/exportChat";
 import { FiMenu, FiPlus, FiMoreVertical } from "react-icons/fi";
 
 import { useChat } from "../../context/ChatContext";
@@ -13,7 +13,7 @@ import ThemeModal from "../Modals/ThemeModal";
 import VoiceModal from "../Modals/VoiceModal";
 
 function Navbar() {
-  const { createNewChat } = useChat();
+  const { createNewChat, activeChat } = useChat();
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -68,6 +68,10 @@ function Navbar() {
 
             {showMenu && (
               <MenuDropdown
+                onExport={() => {
+                  exportChat(activeChat);
+                  setShowMenu(false);
+                }}
                 onAbout={() => {
                   setAboutOpen(true);
                   setShowMenu(false);

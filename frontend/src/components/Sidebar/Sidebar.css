@@ -1,17 +1,59 @@
 .sidebar {
   width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+
+  flex-shrink: 0;
+
   height: 100vh;
+
   background: #111827;
   color: white;
+
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .sidebar-header {
   padding: 25px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+.search-box {
+  position: relative;
+  margin: 15px;
+}
 
+.search-box input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: #1f2937;
+  color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.no-chat {
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
 .sidebar-header h2 {
   margin: 0;
   font-size: 24px;
@@ -33,11 +75,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+
+  height: 48px;
+
+  padding: 10px 14px;
+
+  border-radius: 12px;
+
+  margin-bottom: 8px;
+
   cursor: pointer;
-  transition: 0.3s;
+
+  transition: 0.25s;
 }
 
 .chat-item:hover {
@@ -53,13 +102,13 @@
   align-items: center;
   gap: 10px;
   flex: 1;
+  overflow: hidden;
 }
 
 .chat-info span {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 14px;
 }
 
 .delete-btn {

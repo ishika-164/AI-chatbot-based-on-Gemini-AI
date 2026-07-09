@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.env
+.env.*
+
+frontend/.env
+backend/chatbot/src/main/resources/application.properties

@@ -1,20 +1,14 @@
 import { useState } from "react";
 import "./ChatInput.css";
 import { FiMic, FiSend } from "react-icons/fi";
-import useSpeechRecognition from "../../hooks/useSpeechRecognition";
+import useRecorder from "../../hooks/useRecorder";
 
 function ChatInput({ onSend }) {
   const [message, setMessage] = useState("");
 
-  const { isListening, supported, toggleListening } = useSpeechRecognition(
-    (text) => {
-      setMessage((prev) => {
-        if (prev.trim() === "") return text;
-
-        return prev + " " + text;
-      });
-    },
-  );
+  const { isRecording, startRecording, stopRecording } = useRecorder((text) => {
+    setMessage((prev) => prev + text);
+  });
 
   const handleSend = () => {
     if (!message.trim()) return;
@@ -40,12 +34,14 @@ function ChatInput({ onSend }) {
       />
 
       <button
-        className={`mic-btn ${isListening ? "listening" : ""}`}
-        onClick={toggleListening}
-        disabled={!supported}
-        title={
-          supported ? "Start Voice Input" : "Speech Recognition Not Supported"
-        }
+        className={`mic-btn ${isRecording ? "listening" : ""}`}
+        onClick={() => {
+          if (isRecording) {
+            stopRecording();
+          } else {
+            startRecording();
+          }
+        }}
       >
         <FiMic />
       </button>
